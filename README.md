@@ -14,7 +14,7 @@ Tecnologías Usadas
 - Spring Boot 3
 - Spring Security
 - Maven 
-- MySQL
+- MySQL 
 
 La API estará disponible en http://localhost:4050 (Se puede cambiar el puerto en el archivo llamado application.properties)
 
@@ -23,6 +23,7 @@ Notas Importantes
     CSRF está deshabilitado en SecurityConfig para facilitar pruebas en Postman.
     Solo hay 2 rutas activas: POST /user y POST /auth/login.
     Esta API se puede extender con JWT para mejorar la seguridad.
+    Para Usar con la BD en Mysql solo Necesitas crear la Base de datos User o Tambien puedes cambiar el nombre , dentro     de application.properties segun el nombre de tu base de datos 
 
 Este proyecto es de código abierto y puedes modificarlo según tus necesidades
 
