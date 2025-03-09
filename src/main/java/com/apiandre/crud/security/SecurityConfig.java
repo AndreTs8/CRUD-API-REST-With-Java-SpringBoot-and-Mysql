@@ -27,6 +27,12 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/user").permitAll() //  Permitir registro sin autenticación
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // ? Permitir login sin autenticación
+                .requestMatchers(HttpMethod.GET,"/user").permitAll() // ? Permitir  sin autenticación
+                .requestMatchers(HttpMethod.GET,"/auth/login").permitAll() // ? Permitir sin autenticación 
+                .requestMatchers(HttpMethod.DELETE, "/user/{id}").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/auth/login").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/user/{id}").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/auth/login{id}").permitAll()
                 .anyRequest().authenticated() // ? Proteger cualquier otra ruta
             )
             .httpBasic(withDefaults()) //  Autenticación básica
@@ -40,7 +46,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of("http://127.0.0.1:5500", "http://localhost:5500")); // Asegúrate de incluir la URL de tu frontend
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-Type","x-session-token"));
+        config.setAllowCredentials(true);
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
